@@ -1,7 +1,7 @@
-﻿using DailyReigstryDetailsJob.Models;
+﻿using RegistryJob.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DailyReigstryDetailsJob.DAL
+namespace RegistryJob.DAL
 {
     public class DatabaseContext : DbContext
     {

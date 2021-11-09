@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DailyReigstryDetailsJob.Models
+namespace RegistryJob.Models
 {
     public class DailyReigstryDetailsModel
     {

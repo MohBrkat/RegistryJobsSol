@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DailyReigstryDetailsJob.Models
+namespace RegistryJob.Models
 {
     [Keyless]
     public class Configuration

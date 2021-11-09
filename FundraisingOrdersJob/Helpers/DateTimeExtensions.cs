@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DailyReigstryDetailsJob.Helpers
+namespace RegistryJob.Helpers
 {
     public static class DateTimeExtensions
     {

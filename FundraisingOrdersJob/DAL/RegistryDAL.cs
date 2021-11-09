@@ -1,4 +1,4 @@
-﻿using DailyReigstryDetailsJob.Models;
+﻿using RegistryJob.Models;
 using Log4NetLibrary;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
-namespace DailyReigstryDetailsJob.DAL
+namespace RegistryJob.DAL
 {
     public class RegistryDAL
     {

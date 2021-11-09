@@ -1,6 +1,6 @@
-﻿using DailyReigstryDetailsJob.DAL;
-using DailyReigstryDetailsJob.Helpers;
-using DailyReigstryDetailsJob.Models;
+﻿using RegistryJob.DAL;
+using RegistryJob.Helpers;
+using RegistryJob.Models;
 using Log4NetLibrary;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DailyReigstryDetailsJob
+namespace RegistryJob
 {
     public class Program
     {
