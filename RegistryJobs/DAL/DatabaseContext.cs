@@ -1,24 +1,33 @@
 ﻿using RegistryJob.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 namespace RegistryJob.DAL
 {
-    public class DatabaseContext : DbContext
+    public partial class DatabaseContext : DbContext
     {
         public virtual DbSet<Configuration> Configurations { get; set; }
 
         public DatabaseContext(string _connectionString)
-            : base(GetOptions(_connectionString))
+            : base(_connectionString)
         {
         }
 
-        private static DbContextOptions GetOptions(string connectionString)
+        //private static Microsoft.EntityFrameworkCore.DbContextOptions GetOptions(string connectionString)
+        //{
+        //    return Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+        //}
+
+        public virtual ObjectResult<Report_GetRegistryDailyPhysicalOrders_Result> Report_GetRegistryDailyPhysicalOrders(Nullable<int> clientId)
         {
-            return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+            var clientIdParameter = clientId.HasValue ?
+                new SqlParameter("ClientId", clientId) :
+                new SqlParameter("ClientId", typeof(int));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteStoreQuery<Report_GetRegistryDailyPhysicalOrders_Result>("dbo.Report_GetRegistryDailyPhysicalOrders @ClientId", clientIdParameter);
         }
     }
 }
