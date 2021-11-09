@@ -1,11 +1,11 @@
-﻿using FundraisingOrdersJob.DAL;
+﻿using DailyReigstryDetailsJob.DAL;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net.Mail;
 
-namespace FundraisingOrdersJob.Helpers
+namespace DailyReigstryDetailsJob.Helpers
 {
     public class SendEmailHelper
     {
@@ -79,7 +79,7 @@ namespace FundraisingOrdersJob.Helpers
 
             if (string.IsNullOrEmpty(_toEmails))
             {
-                throw new Exception($"Fundraising Job Error: Receipient email configurations for clientId - {_clientId} -  does not exits");
+                throw new Exception($"Daily Reigstry Details Job Error: Receipient email configurations for clientId - {_clientId} -  does not exits");
             }
 
             var emails = _toEmails.Split(';');
@@ -98,9 +98,9 @@ namespace FundraisingOrdersJob.Helpers
             smtpClient.Send(mail);
         }
 
-        public static string GetMessage(int ordersCount)
+        public static string GetMessage(int registriesCount)
         {
-            string body = "Fundraising physical orders report file generated, there are " + ordersCount + " orders. <br />";
+            string body = "Daily Reigstry Details report file generated, there are " + registriesCount + " registries. <br />";
             body += "Please see the attachment. <br /><br />";
             body += "Thank you<br />";
             body += "Jifiti";
@@ -112,11 +112,11 @@ namespace FundraisingOrdersJob.Helpers
         {
             var innerExceptionMessage = exception.InnerException != null && !string.IsNullOrEmpty(exception.InnerException.Message) ? "InnerException Message: " + exception.InnerException?.Message + "<br />" : "";
 
-            string body = "<h3>Fundraising Orders Job APP Failed</h3><br /><br />";
+            string body = "<h3>Daily Reigstry Details Job APP Failed</h3><br /><br />";
             body += "Error Message: " + exception.Message + "<br />";
             body += innerExceptionMessage;
             body += "Stack Trace: " + JsonConvert.SerializeObject(exception) + "<br /><br />";
-            body += "Fundraising Orders Job APP";
+            body += "Daily Reigstry Details Job APP";
 
             return body;
         }

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace FundraisingOrdersJob.Models
+namespace DailyReigstryDetailsJob.Models
 {
     public class FundraisingOrdersModel
     {

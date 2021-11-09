@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace FundraisingOrdersJob.Models
+namespace DailyReigstryDetailsJob.Models
 {
     [Keyless]
     public class Configuration

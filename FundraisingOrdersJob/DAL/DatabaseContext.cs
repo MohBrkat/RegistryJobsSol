@@ -1,17 +1,13 @@
-﻿using FundraisingOrdersJob.Models;
+﻿using DailyReigstryDetailsJob.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace FundraisingOrdersJob.DAL
+namespace DailyReigstryDetailsJob.DAL
 {
-    public class FundraisingJobContext : DbContext
+    public class DatabaseContext : DbContext
     {
         public virtual DbSet<Configuration> Configurations { get; set; }
 
-        public FundraisingJobContext(string _connectionString)
+        public DatabaseContext(string _connectionString)
             : base(GetOptions(_connectionString))
         {
         }

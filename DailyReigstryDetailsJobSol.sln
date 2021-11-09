@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4NetLibrary", "Log4NetLibrary\Log4NetLibrary.csproj", "{B2A25AEE-24FF-4541-9B56-55446FFEE5A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundraisingOrdersJob", "FundraisingOrdersJob\FundraisingOrdersJob.csproj", "{3CE93A76-2086-4D61-9C99-7B8C06A8CEFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyReigstryDetailsJob", "FundraisingOrdersJob\DailyReigstryDetailsJob.csproj", "{3CE93A76-2086-4D61-9C99-7B8C06A8CEFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

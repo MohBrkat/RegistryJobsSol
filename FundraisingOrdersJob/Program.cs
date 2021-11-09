@@ -1,6 +1,6 @@
-﻿using FundraisingOrdersJob.DAL;
-using FundraisingOrdersJob.Helpers;
-using FundraisingOrdersJob.Models;
+﻿using DailyReigstryDetailsJob.DAL;
+using DailyReigstryDetailsJob.Helpers;
+using DailyReigstryDetailsJob.Models;
 using Log4NetLibrary;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FundraisingOrdersJob
+namespace DailyReigstryDetailsJob
 {
     public class Program
     {
@@ -21,57 +21,58 @@ namespace FundraisingOrdersJob
                 GetAppSettingsFile();
 
                 var registryDAL = new RegistryDAL(_iconfiguration);
-                var clientIdsString = registryDAL.GetConfigurations("FundraisingJobClientIds")?.Value;
+                var clientIdsString = "273";
+                //var clientIdsString = registryDAL.GetConfigurations("DailyRegistryDetailsJobClientIds")?.Value;
 
                 List<string> clientIdList = clientIdsString.Split(',').ToList();
                 foreach (var clientId in clientIdList)
                 {
-                    GenerateDailyFundraisingOrdersReport(clientId);
+                    GenerateDailyRegistryDetailsReport(clientId);
                 }
 
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                new SendEmailHelper(_iconfiguration).SendEmail(ex, "Fundraising Job Error: Job Failed.");
+                new SendEmailHelper(_iconfiguration).SendEmail(ex, "Daily Registry Details Job Error: Job Failed.");
             }
         }
 
-        private static void GenerateDailyFundraisingOrdersReport(string clientId)
+        private static void GenerateDailyRegistryDetailsReport(string clientId)
         {
             string fileName = string.Empty;
 
             var registryDAL = new RegistryDAL(_iconfiguration);
-            string reportName = registryDAL.GetConfigurations("FundraisingJobReportName", Convert.ToInt32(clientId))?.Value;
+            string reportName = registryDAL.GetConfigurations("DailyRegistryDetailsJobReportName", Convert.ToInt32(clientId))?.Value;
 
             if (string.IsNullOrEmpty(reportName))
             {
-                throw new Exception($"Fundraising Job Error: Report name configurations for clientId - {clientId} -  does not exits");
+                throw new Exception($"Daily Registry Details Job Error: Report name configurations for clientId - {clientId} -  does not exits");
             }
 
-            List<FundraisingOrdersModel> fundraisingOrders = GetFundraisingOrdersDataByClientId(clientId);
+            List<DailyReigstryDetailsModel> dailyReigstryDetails = GetDailyRegistryDetailsByClientId(clientId);
 
             string extension = "csv";
-            if (fundraisingOrders != null && fundraisingOrders.Count() > 0)
+            if (dailyReigstryDetails != null && dailyReigstryDetails.Count() > 0)
             {
-                Logger.Debug($"Generating Daily Fundraising Orders Report for date: {DateTime.Now:yyyyMMdd}, there are {fundraisingOrders.Count()} orders");
+                Logger.Debug($"Generating Daily Reigstry Details Report for date: {DateTime.Now:yyyyMMdd}, there are {dailyReigstryDetails.Count()} orders");
                 fileName = $"{reportName}{clientId}-{DateTime.Now:yyyyMMdd}.{extension}";
             }
 
             if (!string.IsNullOrEmpty(fileName))
             {
-                byte[] ordersFile = ExportToExcelHelper.ExportToExcel(fundraisingOrders, extension, true);
-                new SendEmailHelper(_iconfiguration, Convert.ToInt32(clientId)).SendEmail("help@jifiti.com", SendEmailHelper.GetMessage(fundraisingOrders.Count()), "Daily Fundraising Orders Report", fileName, ordersFile);
+                byte[] ordersFile = ExportToExcelHelper.ExportToExcel(dailyReigstryDetails, extension, true);
+                new SendEmailHelper(_iconfiguration, Convert.ToInt32(clientId)).SendEmail("help@jifiti.com", SendEmailHelper.GetMessage(dailyReigstryDetails.Count()), "Daily Reigstry Details Report", fileName, ordersFile);
             }
         }
 
-        static List<FundraisingOrdersModel> GetFundraisingOrdersDataByClientId(string clientId)
+        static List<DailyReigstryDetailsModel> GetDailyRegistryDetailsByClientId(string clientId)
         {
-            Logger.Info("Get Fundraising Orders Data for Client Id " + clientId);
+            Logger.Info("Get Daily Registry Details Data for Client Id " + clientId);
             var registryDAL = new RegistryDAL(_iconfiguration);
             int client = Convert.ToInt32(clientId);
-            var fundraisingOrders = registryDAL.GetFundraisingOrders(client);
-            return fundraisingOrders;
+            var dailyReigstryDetails = registryDAL.GetDailyRegistryDetailsData(client);
+            return dailyReigstryDetails;
         }
 
         #region general

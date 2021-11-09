@@ -8,7 +8,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using OfficeOpenXml;
 
-namespace FundraisingOrdersJob.Helpers
+namespace DailyReigstryDetailsJob.Helpers
 {
     public class ExportToExcelHelper
     {
