@@ -1,11 +1,11 @@
-﻿using FundraisingOrdersJob.DAL;
+﻿using RegistryJob.DAL;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net.Mail;
 
-namespace FundraisingOrdersJob.Helpers
+namespace RegistryJob.Helpers
 {
     public class SendEmailHelper
     {

@@ -1,4 +1,4 @@
-﻿using FundraisingOrdersJob.Models;
+﻿using RegistryJob.Models;
 using Log4NetLibrary;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace FundraisingOrdersJob.DAL
+namespace RegistryJob.DAL
 {
     public class RegistryDAL
     {
@@ -19,7 +19,7 @@ namespace FundraisingOrdersJob.DAL
 
         public Configuration GetConfigurations(string parameterName, int clientId = 0)
         {
-            using (var context = new FundraisingJobContext(_connectionString))
+            using (var context = new DatabaseContext(_connectionString))
             {
                 return context.Configurations.Where(c => c.ParameterName == parameterName && c.ClientId == clientId).SingleOrDefault();
             }
