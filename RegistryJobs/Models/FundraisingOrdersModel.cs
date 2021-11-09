@@ -23,7 +23,7 @@ namespace RegistryJob.Models
         public string Country { get; set; }
         public string ItemTitle { get; set; }
         public string SKU { get; set; }
-        public int? Quantity { get; set; }
+        public Nullable<int> Quantity { get; set; }
         public string ItemWeight { get; set; }
         public decimal ItemPrice { get; set; }
         public string ItemCurrency { get; set; }

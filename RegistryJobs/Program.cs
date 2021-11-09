@@ -49,7 +49,7 @@ namespace RegistryJob
                 throw new Exception($"Fundraising Job Error: Report name configurations for clientId - {clientId} -  does not exits");
             }
 
-            List<Report_GetRegistryDailyPhysicalOrders_Result> fundraisingOrders = GetFundraisingOrdersDataByClientId(clientId);
+            List<FundraisingOrdersModel> fundraisingOrders = GetFundraisingOrdersDataByClientId(clientId);
 
             string extension = "csv";
             if (fundraisingOrders != null && fundraisingOrders.Count() > 0)
@@ -65,7 +65,7 @@ namespace RegistryJob
             }
         }
 
-        static List<Report_GetRegistryDailyPhysicalOrders_Result> GetFundraisingOrdersDataByClientId(string clientId)
+        static List<FundraisingOrdersModel> GetFundraisingOrdersDataByClientId(string clientId)
         {
             Logger.Info("Get Fundraising Orders Data for Client Id " + clientId);
             var registryDAL = new RegistryDAL(_iconfiguration);

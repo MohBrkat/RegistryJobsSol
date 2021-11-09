@@ -25,7 +25,7 @@ namespace RegistryJob.DAL
             }
         }
 
-        public List<Report_GetRegistryDailyPhysicalOrders_Result> GetFundraisingOrders(int clientId)
+        public List<FundraisingOrdersModel> GetFundraisingOrders(int clientId)
         {
             Logger.Info($"Get Fundraising Orders Data, ClientId: {clientId}, Date: {DateTime.Now:yyyyMMdd}");
             try

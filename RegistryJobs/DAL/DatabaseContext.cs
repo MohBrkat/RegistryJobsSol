@@ -21,13 +21,13 @@ namespace RegistryJob.DAL
         //    return Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
         //}
 
-        public virtual ObjectResult<Report_GetRegistryDailyPhysicalOrders_Result> Report_GetRegistryDailyPhysicalOrders(Nullable<int> clientId)
+        public virtual ObjectResult<FundraisingOrdersModel> Report_GetRegistryDailyPhysicalOrders(Nullable<int> clientId)
         {
             var clientIdParameter = clientId.HasValue ?
                 new SqlParameter("ClientId", clientId) :
                 new SqlParameter("ClientId", typeof(int));
 
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteStoreQuery<Report_GetRegistryDailyPhysicalOrders_Result>("dbo.Report_GetRegistryDailyPhysicalOrders @ClientId", clientIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteStoreQuery<FundraisingOrdersModel>("dbo.Report_GetRegistryDailyPhysicalOrders @ClientId", clientIdParameter);
         }
     }
 }
