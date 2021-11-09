@@ -27,7 +27,7 @@ namespace RegistryJob.DAL
                 new SqlParameter("ClientId", clientId) :
                 new SqlParameter("ClientId", typeof(int));
 
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteStoreQuery<FundraisingOrdersModel>("dbo.Report_GetRegistryDailyPhysicalOrders @ClientId", clientIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteStoreQuery<FundraisingOrdersModel>("Report_GetRegistryDailyPhysicalOrders @ClientId", clientIdParameter);
         }
     }
 }

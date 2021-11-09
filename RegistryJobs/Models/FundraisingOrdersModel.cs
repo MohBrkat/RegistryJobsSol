@@ -6,10 +6,10 @@ using System.Text;
 
 namespace RegistryJob.Models
 {
-    public class FundraisingOrdersModel
+    public partial class FundraisingOrdersModel
     {
-        public int OrderNumber { get; set; }
-        public DateTime OrderDate { get; set; }
+        public string OrderNumber { get; set; }
+        public string OrderDate { get; set; }
         public string RecipientName { get; set; }
         public string Company { get; set; }
         public string Email { get; set; }
@@ -19,14 +19,18 @@ namespace RegistryJob.Models
         public string StreetLine2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public string ZipCode { get; set; }
+        public string PostalCode { get; set; }
         public string Country { get; set; }
-        public string ItemTitle { get; set; }
+        public string ProductTitle { get; set; }
         public string SKU { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public string ItemWeight { get; set; }
-        public decimal ItemPrice { get; set; }
-        public string ItemCurrency { get; set; }
+        public string Quantity { get; set; }
+        public string ProductWeight { get; set; }
+        public string ProductPrice { get; set; }
+        public string Currency { get; set; }
+        public string SubTotal { get; set; }
+        public string Tax { get; set; }
+        public string Shipping { get; set; }
+        public string Total { get; set; }
         public string ShippingMethod { get; set; }
     }
 }
