@@ -61,7 +61,8 @@ namespace RegistryJob
             if (!string.IsNullOrEmpty(fileName))
             {
                 byte[] ordersFile = ExportToExcelHelper.ExportToExcel(fundraisingOrders, extension, true);
-                new SendEmailHelper(_iconfiguration, Convert.ToInt32(clientId)).SendEmail("help@jifiti.com", SendEmailHelper.GetMessage(fundraisingOrders.Count()), "Daily Fundraising Orders Report", fileName, ordersFile);
+                var ordersCount = fundraisingOrders.Where(o => !string.IsNullOrEmpty(o.OrderNumber)).Select(o => o.OrderNumber).Distinct().Count();
+                new SendEmailHelper(_iconfiguration, Convert.ToInt32(clientId)).SendEmail("help@jifiti.com", SendEmailHelper.GetMessage(ordersCount), "Daily Fundraising Orders Report", fileName, ordersFile);
             }
         }
 
