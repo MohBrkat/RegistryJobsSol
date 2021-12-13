@@ -8,11 +8,14 @@ namespace RegistryJob.Models
 {
     public partial class FundraisingOrdersModel
     {
+        public int RowNo { get; set; }
         public string OrderNumber { get; set; }
         public string OrderDate { get; set; }
         public string RecipientName { get; set; }
         public string Company { get; set; }
-        public string Email { get; set; }
+        public string RecipientEmail { get; set; }
+        public string BuyerName { get; set; }
+        public string BuyerEmail { get; set; }
         public string Phone { get; set; }
         public string StreetLine1 { get; set; }
         public string StreetNumber { get; set; }
