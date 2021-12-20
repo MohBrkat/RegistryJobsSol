@@ -10,12 +10,13 @@ namespace RegistryJob.Models
     {
         public int RowNo { get; set; }
         public string OrderNumber { get; set; }
+        public string EventName { get; set; }
         public string OrderDate { get; set; }
-        public string RecipientName { get; set; }
-        public string Company { get; set; }
-        public string RecipientEmail { get; set; }
         public string BuyerName { get; set; }
         public string BuyerEmail { get; set; }
+        public string RecipientName { get; set; }
+        public string RecipientEmail { get; set; }
+        public string Company { get; set; }
         public string Phone { get; set; }
         public string StreetLine1 { get; set; }
         public string StreetNumber { get; set; }
@@ -27,7 +28,6 @@ namespace RegistryJob.Models
         public string ProductTitle { get; set; }
         public string SKU { get; set; }
         public string Quantity { get; set; }
-        public string ProductWeight { get; set; }
         public string ProductPrice { get; set; }
         public string Currency { get; set; }
         public string SubTotal { get; set; }
