@@ -121,11 +121,11 @@ namespace RegistryJob.Helpers
 
                         if (j == properties.Count)
                         {
-                            sb.Append(worksheet.Cells[row, j].Value);
+                            sb.Append(worksheet.Cells[row, j].Value?.ToString()?.Trim());
                         }
                         else
                         {
-                            sb.Append(worksheet.Cells[row, j].Value + ",");
+                            sb.Append(worksheet.Cells[row, j].Value?.ToString()?.Trim() + ",");
                         }
                     }
                     sb.AppendLine();

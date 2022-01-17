@@ -6,21 +6,21 @@ namespace RegistryJob.Models
 {
     public class DailyReigstryDetailsModel
     {
-        public int ListNumher { get; internal set; }
-        public string RegistrantFirstName { get; internal set; }
-        public string RegistrantLastName { get; internal set; }
-        public string CoRegistrantFirstName { get; internal set; }
-        public string CoRegistrantLastName { get; internal set; }
-        public string RegistrantPhone { get; internal set; }
-        public string RegistrantEmail { get; internal set; }
-        public string CoRegistrantEmail { get; internal set; }
-        public string CoRegistrantPhone { get; internal set; }
-        public string Country { get; internal set; }
-        public string City { get; internal set; }
-        public string AddressLine1 { get; internal set; }
-        public string AddressLine2 { get; internal set; }
-        public string Zip { get; internal set; }
-        public string Province { get; internal set; }
-        public string County { get; internal set; }
+        public int ListNumber { get; set; }
+        public string RegistrantFirstName { get; set; }
+        public string RegistrantLastName { get; set; }
+        public string CoRegistrantFirstName { get; set; }
+        public string CoRegistrantLastName { get; set; }
+        public string RegistrantPhone { get; set; }
+        public string RegistrantEmail { get; set; }
+        public string CoRegistrantEmail { get; set; }
+        public string CoRegistrantPhone { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string Zip { get; set; }
+        public string Province { get; set; }
+        public string County { get; set; }
     }
 }

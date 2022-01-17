@@ -61,8 +61,12 @@ namespace RegistryJob
 
             if (!string.IsNullOrEmpty(fileName))
             {
+                int intClientId = Convert.ToInt32(clientId);
                 byte[] ordersFile = ExportToExcelHelper.ExportToExcel(dailyReigstryDetails, extension, true);
-                new SendEmailHelper(_iconfiguration, Convert.ToInt32(clientId)).SendEmail("help@jifiti.com", SendEmailHelper.GetMessage(dailyReigstryDetails.Count()), "Daily Reigstry Details Report", fileName, ordersFile);
+                //new SendEmailHelper(_iconfiguration, intClientId).SendEmail("help@jifiti.com", SendEmailHelper.GetMessage(dailyReigstryDetails.Count()), "Daily Reigstry Details Report", fileName, ordersFile);
+                string pathToWriteCSVFiles = registryDAL.GetConfigurations("PathToWriteCSVFiles", intClientId)?.Value;
+                WriteFile(pathToWriteCSVFiles, ordersFile, fileName);
+                new FTPHelper(_iconfiguration, intClientId).SendFileToSFTP(pathToWriteCSVFiles, fileName);
             }
         }
 
@@ -83,6 +87,23 @@ namespace RegistryJob
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             _iconfiguration = builder.Build();
+        }
+
+        private static void CheckDirectory(string PathToWriteCSVFiles)
+        {
+            if (!Directory.Exists(PathToWriteCSVFiles))
+            {
+                Directory.CreateDirectory(PathToWriteCSVFiles);
+            }
+        }
+
+        private static void WriteFile(string PathToWriteCSVFiles, byte[] fileBytes, string fileName)
+        {
+            CheckDirectory(PathToWriteCSVFiles);
+
+            File.WriteAllBytes(PathToWriteCSVFiles + "/" + fileName, fileBytes);
+
+            Logger.Info("file: " + fileName + " has been written");
         }
         #endregion
     }
