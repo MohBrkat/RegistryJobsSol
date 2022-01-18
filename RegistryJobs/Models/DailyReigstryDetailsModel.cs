@@ -22,5 +22,6 @@ namespace RegistryJob.Models
         public string Zip { get; set; }
         public string Province { get; set; }
         public string County { get; set; }
+        public DateTime ListCreatedDate { get; set; }
     }
 }
