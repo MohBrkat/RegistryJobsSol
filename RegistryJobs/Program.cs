@@ -21,8 +21,7 @@ namespace RegistryJob
                 GetAppSettingsFile();
 
                 var registryDAL = new RegistryDAL(_iconfiguration);
-                var clientIdsString = "273";
-                //var clientIdsString = registryDAL.GetConfigurations("DailyRegistryDetailsJobClientIds")?.Value;
+                var clientIdsString = registryDAL.GetConfigurations("DailyRegistryDetailsJobClientIds")?.Value;
 
                 List<string> clientIdList = clientIdsString.Split(',').ToList();
                 foreach (var clientId in clientIdList)
@@ -53,11 +52,9 @@ namespace RegistryJob
             List<DailyReigstryDetailsModel> dailyReigstryDetails = GetDailyRegistryDetailsByClientId(clientId);
 
             string extension = "csv";
-            if (dailyReigstryDetails != null && dailyReigstryDetails.Count() > 0)
-            {
-                Logger.Debug($"Generating Daily Reigstry Details Report for date: {DateTime.Now:yyyyMMdd}, there are {dailyReigstryDetails.Count()} orders");
-                fileName = $"{reportName}{clientId}-{DateTime.Now:yyyyMMdd}.{extension}";
-            }
+
+            Logger.Debug($"Generating Daily Reigstry Details Report for date: {DateTime.Now:yyyyMMdd}, there are {dailyReigstryDetails?.Count()} orders");
+            fileName = $"{reportName}{clientId}-{DateTime.Now:yyyyMMdd}.{extension}";
 
             if (!string.IsNullOrEmpty(fileName))
             {
